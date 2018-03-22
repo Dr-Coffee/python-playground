@@ -95,8 +95,19 @@ def cnn_model_fn(features, labels, mode):
         mode = mode, loss = loss, eval_metric_ops = eval_metric_ops
     )
 
-def main(argv):
+def temp(argv):
     tf.logging.set_verbosity(tf.logging.INFO)
+
+def main(unused_argv):
+    # Load training and eval data
+    mnist = tf.contrib.learn.datasets.load_dataset("mnist")
+    train_data = mnist.train.images #Return np.array
+    # Take a look the image
+    #import cv2
+    #img = train_data[20,:].reshape([28,28])
+    #img = cv2.resize(img, None, fx=4, fy=4, interpolation=cv2.INTER_CUBIC)
+    #cv2.imshow("1", img)
+    #cv2.waitKey(0)
 
 if __name__ == "__main__":
     tf.app.run()
