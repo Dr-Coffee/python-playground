@@ -108,6 +108,13 @@ def main(unused_argv):
     #img = cv2.resize(img, None, fx=4, fy=4, interpolation=cv2.INTER_CUBIC)
     #cv2.imshow("1", img)
     #cv2.waitKey(0)
+    train_labels = np.asarray(mnist.train.labels, dtype=np.int32)
+    eval_data = mnist.test.images
+    eval_labels = np.asarray(mnist.test.labels, dtype=np.int32)
+    # Create the estimator
+    mnist_classifier = tf.estimator.Estimator(
+        model_fn=cnn_model_fn, model_dir="/tmp/mnist_convnet_model"
+    )
 
 if __name__ == "__main__":
     tf.app.run()
