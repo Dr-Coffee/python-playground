@@ -24,5 +24,3 @@ def learn_single_function():
 
 
 
-
-

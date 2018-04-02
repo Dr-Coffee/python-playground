@@ -2,5 +2,6 @@ venv/
 __pycache__/
 tmp_model/
 MNIST-data/
+models/
 *.xml
 .idea/
