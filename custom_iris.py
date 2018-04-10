@@ -3,7 +3,7 @@ from __future__ import division
 from __future__ import print_function
 import argparse
 import tensorflow as tf
-import models.iris_data
+import models.iris_data as iris_data
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--batch_size', default=100, type=int,
@@ -27,3 +27,9 @@ def train_input_fn(features, labels, batch_size):
     dataset = dataset.shuffle(1000).repeat().batch(
         batch_size)
     return dataset.make_one_shot_iterator().get_next()
+
+def main(argv):
+    args = parser.parse_args(argv[1:])
+
+    # Fetch the data
+    (train_x, train_y), (test_x, test_y) = iris_data.load_data()
