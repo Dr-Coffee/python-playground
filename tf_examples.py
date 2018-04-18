@@ -21,6 +21,12 @@ def learn_single_function():
         if step % 20 == 0:
             print(step, sess.run(weights), sess.run(biases))
 
+def main(argv):
+    # Implement a custom estimator here
+    pass
 
+if __name__ == '__main__':
+    tf.logging.set_verbosity(tf.logging.INFO)
+    tf.app.run(main)
 
 
