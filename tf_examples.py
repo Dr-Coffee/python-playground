@@ -3,6 +3,10 @@ import os
 import numpy as np
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
+def my_model():
+    weights = tf.Variable(tf.random_uniform([1], -1.0, 1.0))
+    pass
+
 def learn_single_function():
     x_data = np.random.rand(100).astype(np.float32)
     y_data = x_data * 0.1 + 0.3
