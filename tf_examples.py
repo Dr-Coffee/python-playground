@@ -9,6 +9,13 @@ parser.add_argument('--batch_size', default=100, type=int, help='batch size')
 parser.add_argument('--train_steps', default=1000, type=int,
                     help='number of training steps')
 
+def input_evaluation_set():
+    x_data = np.random.rand(100).astype(np.float32)
+    y_data = x_data * 0.1 + 0.3
+    features = {'x':x_data}
+    labels = y_data
+    return features, labels
+
 def my_model(features, labels, mode, params):
     weights = tf.Variable(tf.random_uniform([1], -1.0, 1.0))
     biases = tf.Variable(tf.zeros([1]))
@@ -34,58 +41,31 @@ def learn_single_function():
 
 def main(argv):
     args = parser.parse_args(argv[1:])
-
     # Fetch the data
+    x_data = np.random.rand(100).astype(np.float32)
+    y_data = x_data * 0.1 + 0.3
+
 
     # Feature columns describe how to use the input.
-    my_feature_columns = []
-    for key in train_x.keys():
-        my_feature_columns.append(tf.feature_column.numeric_column(key=key))
+    #my_feature_columns = []
+    #for key in train_x.keys():
+    #    my_feature_columns.append(tf.feature_column.numeric_column(key=key))
 
     # Build 2 hidden layer DNN with 10, 10 units respectively.
-    classifier = tf.estimator.Estimator(
-        model_fn=my_model,
-        params={
-            'feature_columns': my_feature_columns,
-            # Two hidden layers of 10 nodes each.
-            'hidden_units': [10, 10],
-            # The model must choose between 3 classes.
-            'n_classes': 3,
-        })
+    #classifier = tf.estimator.Estimator(
+    #    model_fn=my_model,
+    #    params={
+    #        'feature_columns': my_feature_columns,
+    #        # Two hidden layers of 10 nodes each.
+    #        'hidden_units': [10, 10],
+    #        # The model must choose between 3 classes.
+    #        'n_classes': 3,
+    #    })
 
     # Train the Model.
-    classifier.train(
-        input_fn=lambda:iris_data.train_input_fn(train_x, train_y, args.batch_size),
-        steps=args.train_steps)
-
-    # Evaluate the model.
-    eval_result = classifier.evaluate(
-        input_fn=lambda:iris_data.eval_input_fn(test_x, test_y, args.batch_size))
-
-    print('\nTest set accuracy: {accuracy:0.3f}\n'.format(**eval_result))
-
-    # Generate predictions from the model
-    expected = ['Setosa', 'Versicolor', 'Virginica']
-    predict_x = {
-        'SepalLength': [5.1, 5.9, 6.9],
-        'SepalWidth': [3.3, 3.0, 3.1],
-        'PetalLength': [1.7, 4.2, 5.4],
-        'PetalWidth': [0.5, 1.5, 2.1],
-    }
-
-    predictions = classifier.predict(
-        input_fn=lambda:iris_data.eval_input_fn(predict_x,
-                                                labels=None,
-                                                batch_size=args.batch_size))
-
-    for pred_dict, expec in zip(predictions, expected):
-        template = ('\nPrediction is "{}" ({:.1f}%), expected "{}"')
-
-        class_id = pred_dict['class_ids'][0]
-        probability = pred_dict['probabilities'][class_id]
-
-        print(template.format(iris_data.SPECIES[class_id],
-                              100 * probability, expec))
+    #classifier.train(
+    #    input_fn=lambda:iris_data.train_input_fn(train_x, train_y, args.batch_size),
+    #    steps=args.train_steps)
 
 if __name__ == '__main__':
     tf.logging.set_verbosity(tf.logging.INFO)
