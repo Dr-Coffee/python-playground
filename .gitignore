@@ -4,4 +4,4 @@ tmp_model/
 MNIST-data/
 models/
 *.xml
-tensorflow/.idea/
+.idea/
