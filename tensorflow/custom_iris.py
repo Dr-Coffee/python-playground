@@ -3,7 +3,7 @@ from __future__ import division
 from __future__ import print_function
 import argparse
 import tensorflow as tf
-import models.iris_data as iris_data
+#import models.iris_data as iris_data
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--batch_size', default=100, type=int,
