@@ -1,4 +1,7 @@
 class Solution(object):
+    def fun(self):
+        pass
+
     def findMedianSortedArrays(self, nums1, nums2):
         """
         :type nums1: List[int]
@@ -16,6 +19,11 @@ class Solution(object):
         else:
             list_long = nums2
             list_short = nums1
+
+        print(list_long)
+        print(list_short)
+
+        # sth
 
         
 
