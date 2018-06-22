@@ -1,31 +1,20 @@
 class Solution(object):
-    def fun(self):
-        pass
-
     def findMedianSortedArrays(self, nums1, nums2):
         """
         :type nums1: List[int]
         :type nums2: List[int]
         :rtype: float
         """
-        n_large = 0
-        n_small = 0
-        v_smallest_in_large = None
-        v_largest_in_small = None
-
+        n_total = len(nums1) + len(nums2)
         if len(nums1) > len(nums2):
             list_long = nums1
             list_short = nums2
         else:
             list_long = nums2
             list_short = nums1
-
-        print(list_long)
+        ix_mid = int(len(list_short)/2)
         print(list_short)
-
-        # sth
-
-        
+        len = len(list_short)-ix_mid+1
 
 
 
