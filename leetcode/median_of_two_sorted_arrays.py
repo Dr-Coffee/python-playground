@@ -4,6 +4,7 @@ class Solution(object):
         :type nums1: List[int]
         :type nums2: List[int]
         :rtype: float
+        two arrays, move pivot
         """
         n_total = len(nums1) + len(nums2)
         if len(nums1) > len(nums2):
