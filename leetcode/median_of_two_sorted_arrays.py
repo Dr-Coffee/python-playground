@@ -1,20 +1,29 @@
 class Solution(object):
-    def fun(self, nums1, nums2, b1, e1, b2, e2):
+    def fun(self, nums1, nums2, b1, e1, b2, e2, sign):
         if e1 - b1 < e2 - b2:
             shift = int((e1-b1)/2)
         else:
             shift = int((e2-b2)/2)
-        ix1 = b1 + shift
-        ix2 = e2 - shift
+        if sign:
+            ix1 = b1 + shift
+            ix2 = e2 - shift
+        else:
+            ix1 = e1 - shift
+            ix2 = b2 + shift
+        print(nums1[b1:e1+1])
+        print(nums2[b2:e2+1])
         if nums1[ix1] > nums2[ix2]:
             if nums1[ix1] <= nums2[ix2+1]:
                 print(nums1[ix1])
                 print(nums2[ix2])
             else:
-                #self.fun(nums1, nums2, b1, ix1, )
-                pass
+                self.fun(nums1, nums2, b1, ix1, ix2, e2, False)
         else:
-            pass
+            if nums1[ix2] <= nums2[ix1+1]:
+                print(nums1[ix1])
+                print(nums2[ix2])
+            else:
+                self.fun(nums1, nums2, ix1, e1, b2, ix2, True)
 
     def findMedianSortedArrays(self, nums1, nums2):
         """
@@ -51,7 +60,8 @@ print(np.median(a))
 
 
 
-#obj = Solution()
+obj = Solution()
+obj.fun(a1, a2, 0, len(a1)-1, 0, len(a2)-1, True)
 #obj.findMedianSortedArrays(a1, a2)
 
 
