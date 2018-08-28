@@ -178,7 +178,6 @@ def train(mnist):
         # 在训练结束之后，在测试数据上检测神经网络模型的最终正确率。
 
     # 同样，我们最终的模型用的是滑动平均之后的模型，从这个accuracy函数
-
     # 的调用就可以看出来了，因为accuracy只与average_y有关
 
     test_acc = sess.run(accuracy, feed_dict=test_feed)
